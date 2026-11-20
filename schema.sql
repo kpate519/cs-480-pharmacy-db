@@ -36,3 +36,11 @@ CREATE TABLE doctor (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE doctor_phone (
+    DEA_number VARCHAR(20) PRIMARY KEY,
+    phone VARCHAR(20),
+    primary_flag VARCHAR(20)
+        CHECK (primary_flag IN ('primary', 'not primary')),
+    PRIMARY KEY (DEA_number, phone)
+);
