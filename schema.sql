@@ -24,3 +24,9 @@ CREATE TABLE allergy {
     PRIMARY KEY (patient_id, allergy_name)
 };
 
+CREATE TABLE health_condition {
+    patient_id INTEGER REFERENCES patient(patient_id),
+    condition_name VARCHAR(50),
+    PRIMARY KEY (patient_id, condition_name)
+};
+
