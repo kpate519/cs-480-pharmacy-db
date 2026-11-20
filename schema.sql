@@ -10,3 +10,11 @@ CREATE TABLE patient (
     zip INTEGER NOT NULL
 );
 
+CREATE TABLE patient_phone {
+    patient_id INTEGER REFERENCES patient(patient_id),
+    phone VARCHAR(20),
+    primary_flag VARCHAR(20)
+        CHECK (primary_flag IN ('primary', 'not primary')),
+    PRIMARY KEY (patient_id, phone)
+};
+
