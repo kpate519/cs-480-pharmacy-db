@@ -18,3 +18,9 @@ CREATE TABLE patient_phone {
     PRIMARY KEY (patient_id, phone)
 };
 
+CREATE TABLE allergy {
+    patient_id INTEGER REFERENCES patient(patient_id),
+    allergy_name VARCHAR(50),
+    PRIMARY KEY (patient_id, allergy_name)
+};
+
