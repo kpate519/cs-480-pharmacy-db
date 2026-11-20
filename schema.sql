@@ -55,3 +55,8 @@ CREATE TABLE drug (
     drug_status VARCHAR(20) NOT NULL
         CHECK (drug_status IN ('Active', 'Inactive'))
 );
+
+CREATE TABLE supplier (
+    supplier_id VARCHAR(20) PRIMARY KEY,
+    supplier_name VARCHAR(50) NOT NULL UNIQUE
+);
