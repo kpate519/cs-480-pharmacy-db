@@ -11,23 +11,29 @@ CREATE TABLE patient (
 );
 
 CREATE TABLE patient_phone (
-    patient_id VARCHAR(20) REFERENCES patient(patient_id),
+    patient_id VARCHAR(20),
     phone VARCHAR(20),
-    primary_flag VARCHAR(20)
+    primary_flag VARCHAR(20) NOT NULL
         CHECK (primary_flag IN ('Primary', 'Not Primary')),
-    PRIMARY KEY (patient_id, phone)
+    PRIMARY KEY (patient_id, phone),
+    FOREIGN KEY (patient_id) REFERENCES patient(patient_id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE allergy (
-    patient_id VARCHAR(20) REFERENCES patient(patient_id),
+    patient_id VARCHAR(20),
     allergy_name VARCHAR(50),
-    PRIMARY KEY (patient_id, allergy_name)
+    PRIMARY KEY (patient_id, allergy_name),
+    FOREIGN KEY (patient_id) REFERENCES patient(patient_id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE health_condition (
-    patient_id VARCHAR(20) REFERENCES patient(patient_id),
+    patient_id VARCHAR(20),
     condition_name VARCHAR(50),
-    PRIMARY KEY (patient_id, condition_name)
+    PRIMARY KEY (patient_id, condition_name),
+    FOREIGN KEY (patient_id) REFERENCES patient(patient_id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE doctor (
@@ -38,16 +44,18 @@ CREATE TABLE doctor (
 );
 
 CREATE TABLE doctor_phone (
-    DEA_number VARCHAR(20) PRIMARY KEY,
+    DEA_number VARCHAR(20),
     phone VARCHAR(20),
-    primary_flag VARCHAR(20)
+    primary_flag VARCHAR(20) NOT NULL
         CHECK (primary_flag IN ('Primary', 'Not Primary')),
-    PRIMARY KEY (DEA_number, phone)
+    PRIMARY KEY (DEA_number, phone),
+    FOREIGN KEY (DEA_number) REFERENCES doctor(DEA_number)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE drug (
     NDC VARCHAR(20) PRIMARY KEY,
-    drug_name VARCHAR(50) NOT NULL UNIQUE,
+    drug_name VARCHAR(50) NOT NULL,
     strength VARCHAR(20) NOT NULL,
     dosage_form VARCHAR(30) NOT NULL,
     drug_schedule VARCHAR(20) NOT NULL
