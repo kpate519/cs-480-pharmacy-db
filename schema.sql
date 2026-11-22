@@ -98,7 +98,7 @@ CREATE TABLE prescription (
     quantity INTEGER NOT NULL
         CHECK (quantity > 0),
     days_supply INTEGER NOT NULL
-        CHECK (days_supply > 0)
+        CHECK (days_supply > 0),
     directions TEXT NOT NULL,
     store_number VARCHAR(20) NOT NULL,
     refills_authorized INTEGER NOT NULL
