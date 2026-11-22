@@ -68,3 +68,22 @@ CREATE TABLE supplier (
     supplier_id VARCHAR(20) PRIMARY KEY,
     supplier_name VARCHAR(50) NOT NULL UNIQUE
 );
+
+CREATE TABLE insurance_plan (
+    plan_id VARCHAR(20) PRIMARY KEY,
+    plan_name VARCHAR(50) NOT NULL,
+    insurance_type VARCHAR(20) NOT NULL
+        CHECK (insurance_type IN ('Medicare', 'Medicaid', 'Private'))
+);
+
+CREATE TABLE staff_member (
+    employee_id VARCHAR(20) PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    employee_role VARCHAR(50) NOT NULL
+        CHECK (employee_role IN ('Technician', 'Pharmacist', 'Rx Operations Manager')),
+    license_no VARCHAR(20) UNIQUE,
+    hire_date DATE NOT NULL,
+    national_cert VARCHAR(20) NOT NULL
+        CHECK (national_cert IN ('Certified', 'Not Certified'))
+);
