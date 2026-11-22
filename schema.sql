@@ -123,3 +123,35 @@ CREATE TABLE fill (
     FOREIGN KEY (employee_id) REFERENCES staff_member(employee_id),
     FOREIGN KEY (prescription_number) REFERENCES prescription(prescription_number)
 );
+
+CREATE TABLE covered_by (
+    patient_id VARCHAR(20),
+    plan_id VARCHAR(20),
+    PRIMARY KEY (patient_id, plan_id),
+    FOREIGN KEY (patient_id) REFERENCES patient(patient_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (plan_id) REFERENCES insurance_plan(plan_id)
+         ON DELETE CASCADE
+);
+
+CREATE TABLE supplied_by (
+    NDC VARCHAR(20),
+    supplier_id VARCHAR(20),
+    PRIMARY KEY (NDC, supplier_id),
+    FOREIGN KEY (NDC) REFERENCES drug(NDC)
+        ON DELETE CASCADE,
+    FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id)
+         ON DELETE CASCADE
+);
+
+CREATE TABLE billed_to (
+    fill_id VARCHAR(20),
+    plan_id VARCHAR(20),
+    claim_result VARCHAR(20) NOT NULL
+        CHECK (claim_result IN ('Paid', 'Rejected')),
+    PRIMARY KEY (fill_id, plan_id),
+    FOREIGN KEY (fill_id) REFERENCES fill(fill_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (plan_id) REFERENCES insurance_plan(plan_id)
+        ON DELETE CASCADE
+);
