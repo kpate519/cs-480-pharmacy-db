@@ -7,6 +7,7 @@ CREATE TABLE patient (
         CHECK (deceased_flag IN ('Deceased', 'Not Deceased')),
     street VARCHAR(50) NOT NULL,
     city VARCHAR(50) NOT NULL,
+    state_info VARCHAR(20) NOT NULL,
     zip VARCHAR(20) NOT NULL
 );
 
