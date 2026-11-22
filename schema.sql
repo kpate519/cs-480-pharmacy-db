@@ -95,11 +95,14 @@ CREATE TABLE prescription (
     NDC VARCHAR(20) NOT NULL,
     employee_id VARCHAR(20) NOT NULL,
     date_written DATE NOT NULL,
-    quantity INTEGER NOT NULL,
-    days_supply INTEGER NOT NULL,
+    quantity INTEGER NOT NULL
+        CHECK (quantity > 0),
+    days_supply INTEGER NOT NULL
+        CHECK (days_supply > 0)
     directions TEXT NOT NULL,
     store_number VARCHAR(20) NOT NULL,
-    refills_authorized INTEGER NOT NULL,
+    refills_authorized INTEGER NOT NULL
+        CHECK (refills_authorized >= 0),
     PRN VARCHAR(20)
         CHECK (PRN = 'As Needed'),
     FOREIGN KEY (patient_id) REFERENCES patient(patient_id),
@@ -108,3 +111,15 @@ CREATE TABLE prescription (
     FOREIGN KEY (employee_id) REFERENCES staff_member(employee_id)
 );
 
+CREATE TABLE fill (
+    fill_id VARCHAR(20) PRIMARY KEY,
+    fill_date DATE NOT NULL,
+    quantity INTEGER NOT NULL
+        CHECK (quantity > 0),
+    fill_status VARCHAR(20) NOT NULL
+        CHECK (fill_status IN ('Ready', 'Sold', 'Returned to Stock')),
+    employee_id VARCHAR(20) NOT NULL,
+    prescription_number VARCHAR(20) NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES staff_member(employee_id),
+    FOREIGN KEY (prescription_number) REFERENCES prescription(prescription_number)
+);
