@@ -39,7 +39,7 @@ CREATE TABLE health_condition (
 
 CREATE TABLE doctor (
     DEA_number VARCHAR(20) PRIMARY KEY,
-    license_number VARCHAR(20) NOT NULL UNIQUE,
+    doctor_license_number VARCHAR(20) NOT NULL UNIQUE,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL
 );
