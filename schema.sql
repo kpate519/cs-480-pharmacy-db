@@ -62,7 +62,7 @@ CREATE TABLE drug (
     drug_schedule VARCHAR(20) NOT NULL
         CHECK (drug_schedule IN ('Controlled', 'Non-controlled')),
     drug_status VARCHAR(20) NOT NULL
-        CHECK (drug_status IN ('Active', 'Inactive'))
+        CHECK (drug_status IN ('Active', 'Recalled', 'Discontinued'))
 );
 
 CREATE TABLE supplier (
