@@ -165,28 +165,28 @@ INSERT INTO doctor_phone (DEA_number, phone, primary_flag) VALUES
     ('BL4812740', '773-555-0224', 'Not Primary');
 
 -- Drugs (sample NDCs) (21 rows)
-INSERT INTO drug (NDC, drug_name, strength, dosage_form, drug_schedule, drug_status) VALUES
-    ('60513-1029-01', 'Lisinopril', '10 mg', 'Tablet', 'None', 'Active'),
-    ('60526-1058-01', 'Atorvastatin', '20 mg', 'Tablet', 'None', 'Active'),
-    ('60539-1087-01', 'Metformin', '500 mg', 'Tablet', 'None', 'Active'),
-    ('60552-1116-01', 'Amlodipine', '5 mg', 'Tablet', 'None', 'Active'),
-    ('60565-1145-01', 'Amoxicillin', '500 mg', 'Capsule', 'None', 'Active'),
-    ('60578-1174-01', 'Levothyroxine', '50 mcg', 'Tablet', 'None', 'Active'),
-    ('60591-1203-01', 'Albuterol HFA', '90 mcg', 'Inhaler', 'None', 'Active'),
-    ('60604-1232-01', 'Sertraline', '50 mg', 'Tablet', 'None', 'Active'),
-    ('60617-1261-01', 'Omeprazole', '20 mg', 'Capsule', 'None', 'Active'),
-    ('60630-1290-01', 'Oxycodone', '5 mg', 'Tablet', 'C2', 'Active'),
-    ('60643-1319-01', 'Hydrocodone/APAP', '5-325 mg', 'Tablet', 'C2', 'Active'),
-    ('60656-1348-01', 'Amphetamine salts', '20 mg', 'Tablet', 'C2', 'Active'),
-    ('60669-1377-01', 'APAP/Codeine', '300-30 mg', 'Tablet', 'C3', 'Active'),
-    ('60682-1406-01', 'Testosterone cypionate', '200 mg/mL', 'Injection', 'C3', 'Active'),
-    ('60695-1435-01', 'Alprazolam', '0.5 mg', 'Tablet', 'C4', 'Active'),
-    ('60708-1464-01', 'Zolpidem', '10 mg', 'Tablet', 'C4', 'Active'),
-    ('60721-1493-01', 'Tramadol', '50 mg', 'Tablet', 'C4', 'Active'),
-    ('60734-1522-01', 'Guaifenesin/Codeine', '100-10 mg/5 mL', 'Liquid', 'C5', 'Active'),
-    ('60747-1551-01', 'Pregabalin', '75 mg', 'Capsule', 'C5', 'Active'),
-    ('60760-1580-01', 'Lacosamide', '100 mg', 'Tablet', 'C5', 'Active'),
-    ('60773-1609-01', 'Ranitidine', '150 mg', 'Tablet', 'None', 'Inactive');
+INSERT INTO drug (NDC, drug_name, strength, dosage_form, package_size, drug_schedule, drug_status) VALUES
+    ('60513-1029-01', 'Lisinopril', '10 mg', 'Tablet', '90 tablets', 'None', 'Active'),
+    ('60526-1058-01', 'Atorvastatin', '20 mg', 'Tablet', '100 tablets', 'None', 'Active'),
+    ('60539-1087-01', 'Metformin', '500 mg', 'Tablet', '500 tablets', 'None', 'Active'),
+    ('60552-1116-01', 'Amlodipine', '5 mg', 'Tablet', '30 tablets', 'None', 'Active'),
+    ('60565-1145-01', 'Amoxicillin', '500 mg', 'Capsule', '100 capsules', 'None', 'Active'),
+    ('60578-1174-01', 'Levothyroxine', '50 mcg', 'Tablet', '100 tablets', 'None', 'Active'),
+    ('60591-1203-01', 'Albuterol HFA', '90 mcg', 'Inhaler', '1 inhaler (200 puffs)', 'None', 'Active'),
+    ('60604-1232-01', 'Sertraline', '50 mg', 'Tablet', '30 tablets', 'None', 'Active'),
+    ('60617-1261-01', 'Omeprazole', '20 mg', 'Capsule', '100 capsules', 'None', 'Active'),
+    ('60630-1290-01', 'Oxycodone', '5 mg', 'Tablet', '100 tablets', 'C2', 'Active'),
+    ('60643-1319-01', 'Hydrocodone/APAP', '5-325 mg', 'Tablet', '500 tablets', 'C2', 'Active'),
+    ('60656-1348-01', 'Amphetamine salts', '20 mg', 'Tablet', '30 tablets', 'C2', 'Active'),
+    ('60669-1377-01', 'APAP/Codeine', '300-30 mg', 'Tablet', '90 tablets', 'C3', 'Active'),
+    ('60682-1406-01', 'Testosterone cypionate', '200 mg/mL', 'Injection', '10 mL vial', 'C3', 'Active'),
+    ('60695-1435-01', 'Alprazolam', '0.5 mg', 'Tablet', '500 tablets', 'C4', 'Active'),
+    ('60708-1464-01', 'Zolpidem', '10 mg', 'Tablet', '30 tablets', 'C4', 'Active'),
+    ('60721-1493-01', 'Tramadol', '50 mg', 'Tablet', '90 tablets', 'C4', 'Active'),
+    ('60734-1522-01', 'Guaifenesin/Codeine', '100-10 mg/5 mL', 'Liquid', '473 mL bottle', 'C5', 'Active'),
+    ('60747-1551-01', 'Pregabalin', '75 mg', 'Capsule', '100 capsules', 'C5', 'Active'),
+    ('60760-1580-01', 'Lacosamide', '100 mg', 'Tablet', '30 tablets', 'C5', 'Active'),
+    ('60773-1609-01', 'Ranitidine', '150 mg', 'Tablet', '90 tablets', 'None', 'Inactive');
 
 -- Suppliers (20 rows)
 INSERT INTO supplier (supplier_id, supplier_name) VALUES
