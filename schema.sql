@@ -156,8 +156,8 @@ CREATE TABLE billed_to (
     claim_result VARCHAR(20) NOT NULL
         CHECK (claim_result IN ('Paid', 'Rejected')),
     PRIMARY KEY (fill_id, plan_id),
-        FOREIGN KEY (employee_id) REFERENCES staff_member(employee_id)
-        ON DELETE RESTRICT,
-    FOREIGN KEY (prescription_number) REFERENCES prescription(prescription_number)
+    FOREIGN KEY (fill_id) REFERENCES fill(fill_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (plan_id) REFERENCES insurance_plan(plan_id)
         ON DELETE RESTRICT
 );
