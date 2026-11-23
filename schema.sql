@@ -12,7 +12,8 @@ CREATE TABLE patient (
     street VARCHAR(50) NOT NULL,
     city VARCHAR(50) NOT NULL,
     state_info VARCHAR(20) NOT NULL,
-    zip VARCHAR(20) NOT NULL
+    zip VARCHAR(20) NOT NULL,
+    UNIQUE (first_name, last_name, date_of_birth, street, city, state_info, zip)
 );
 
 CREATE TABLE patient_phone (
