@@ -64,6 +64,7 @@ CREATE TABLE drug (
     drug_name VARCHAR(50) NOT NULL,
     strength VARCHAR(20) NOT NULL,
     dosage_form VARCHAR(30) NOT NULL,
+    package_size VARCHAR(30) NOT NULL,
     drug_schedule VARCHAR(20) NOT NULL
         CHECK (drug_schedule IN ('C2', 'C3', 'C4', 'C5', 'None')),
     drug_status VARCHAR(20) NOT NULL
