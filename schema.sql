@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS pharmacy;
+CREATE DATABASE pharmacy;
+USE pharmacy;
+
 CREATE TABLE patient (
     patient_id VARCHAR(20) PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
