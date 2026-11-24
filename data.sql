@@ -431,7 +431,10 @@ INSERT INTO fill (fill_id, fill_date, quantity, fill_status, employee_id, prescr
     ('F0064', '2026-08-21', 30, 'Sold', 'E018', 'RX700129'),
     ('F0065', '2026-09-21', 30, 'Sold', 'E007', 'RX700129'),
     ('F0066', '2026-06-07', 7, 'Sold', 'E011', 'RX700130'),
-    ('F0067', '2026-11-14', 1, 'Sold', 'E014', 'RX700131');
+    ('F0067', '2026-11-14', 1, 'Sold', 'E014', 'RX700131'),
+    ('F0068', '2026-11-20', 30, 'Ready', 'E008', 'RX700101'),
+    ('F0069', '2026-11-22', 30, 'Ready', 'E010', 'RX700104'),
+    ('F0070', '2026-11-23', 60, 'Ready', 'E012', 'RX700106');
 
 -- Insurance claims per fill (max 2 plans per fill) (52 rows)
 INSERT INTO billed_to (fill_id, plan_id, claim_result) VALUES
