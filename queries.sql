@@ -31,3 +31,21 @@ JOIN doctor_phone dp
     ON doc.DEA_number = dp.DEA_number
 WHERE d.drug_status = 'Inactive'
 ORDER BY d.drug_name, p.last_name;
+
+-- Q3: R21 - Monthly Fill Count by Staff Member
+SELECT
+    sm.employee_id,
+    sm.first_name,
+    sm.last_name,
+    COUNT(f.fill_id) AS fill_count
+FROM staff_member sm
+JOIN fill f
+    ON sm.employee_id = f.employee_id
+WHERE YEAR(f.fill_date) = YEAR(CURDATE())
+    AND MONTH(f.fill_date) = MONTH(CURDATE())
+GROUP BY
+    sm.employee_id,
+    sm.first_name,
+    sm.last_name
+HAVING COUNT(f.fill_id) > 1
+ORDER BY fill_count DESC;
