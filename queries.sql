@@ -32,6 +32,7 @@ JOIN doctor_phone dp
 WHERE d.drug_status = 'Inactive'
 ORDER BY d.drug_name, p.last_name;
 
+
 -- Q3: R21 - Monthly Fill Count by Staff Member
 SELECT
     sm.employee_id,
@@ -49,6 +50,7 @@ GROUP BY
     sm.last_name
 HAVING COUNT(f.fill_id) > 1
 ORDER BY fill_count DESC;
+
 
 -- Q4: R22 - C3-C5 prescriptions whose refills expire within the next 30 days
 WITH ExpiringPrescriptions AS (
@@ -77,8 +79,8 @@ WHERE expiration_date BETWEEN CURDATE()
                          AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)
 ORDER BY expiration_date;
 
--- Q5: R23 - List patients who have no insurance plan on file
 
+-- Q5: R23 - List patients who have no insurance plan on file
 SELECT
     p.patient_id,
     p.first_name,
@@ -88,3 +90,35 @@ LEFT JOIN covered_by c
     ON p.patient_id = c.patient_id
 WHERE c.patient_id IS NULL
 ORDER BY p.last_name, p.first_name;
+
+
+-- Q6: R24 - Patient drug profile with most recent fill date for each drug
+WITH RankedFills AS (
+    SELECT
+        p.patient_id,
+        p.first_name,
+        p.last_name,
+        d.drug_name,
+        f.fill_date,
+        ROW_NUMBER() OVER (
+            PARTITION BY p.patient_id, d.drug_name
+            ORDER BY f.fill_date DESC
+        ) AS rn
+    FROM patient p
+    JOIN prescription rx
+        ON p.patient_id = rx.patient_id
+    JOIN drug d
+        ON rx.NDC = d.NDC
+    JOIN fill f
+        ON rx.prescription_number = f.prescription_number
+)
+
+SELECT
+    patient_id,
+    first_name,
+    last_name,
+    drug_name,
+    fill_date AS most_recent_fill_date
+FROM RankedFills
+WHERE rn = 1
+ORDER BY patient_id, drug_name;
