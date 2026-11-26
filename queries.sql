@@ -122,3 +122,29 @@ SELECT
 FROM RankedFills
 WHERE rn = 1
 ORDER BY patient_id, drug_name;
+
+
+-- Q7: R25 - For each insurance plan, count the claims rejected this month, highest first
+SELECT
+    i.plan_id,
+    i.plan_name,
+    COUNT(*) AS rejected_claims
+FROM insurance_plan i
+JOIN billed_to b
+    ON i.plan_id = b.plan_id
+JOIN fill f
+    ON b.fill_id = f.fill_id
+WHERE b.claim_result = 'Rejected'
+  AND YEAR(f.fill_date) = (
+      SELECT YEAR(MAX(fill_date))
+      FROM fill
+  )
+  AND MONTH(f.fill_date) = (
+      SELECT MONTH(MAX(fill_date))
+      FROM fill
+  )
+GROUP BY
+    i.plan_id,
+    i.plan_name
+HAVING COUNT(*) > 0
+ORDER BY rejected_claims DESC;
