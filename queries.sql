@@ -49,3 +49,30 @@ GROUP BY
     sm.last_name
 HAVING COUNT(f.fill_id) > 1
 ORDER BY fill_count DESC;
+
+-- Q4: R22 - C3-C5 prescriptions whose refills expire within the next 30 days
+WITH ExpiringPrescriptions AS (
+    SELECT
+        p.prescription_number,
+        p.patient_id,
+        d.drug_name,
+        d.drug_schedule,
+        p.date_written,
+        DATE_ADD(p.date_written, INTERVAL 6 MONTH) AS expiration_date
+    FROM prescription p
+    JOIN drug d
+        ON p.NDC = d.NDC
+    WHERE d.drug_schedule IN ('C3', 'C4', 'C5')
+)
+
+SELECT
+    prescription_number,
+    patient_id,
+    drug_name,
+    drug_schedule,
+    date_written,
+    expiration_date
+FROM ExpiringPrescriptions
+WHERE expiration_date BETWEEN CURDATE()
+                         AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)
+ORDER BY expiration_date;
