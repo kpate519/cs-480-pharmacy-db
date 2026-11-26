@@ -76,3 +76,15 @@ FROM ExpiringPrescriptions
 WHERE expiration_date BETWEEN CURDATE()
                          AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)
 ORDER BY expiration_date;
+
+-- Q5: R23 - List patients who have no insurance plan on file
+
+SELECT
+    p.patient_id,
+    p.first_name,
+    p.last_name
+FROM patient p
+LEFT JOIN covered_by c
+    ON p.patient_id = c.patient_id
+WHERE c.patient_id IS NULL
+ORDER BY p.last_name, p.first_name;
