@@ -490,3 +490,15 @@ INSERT INTO billed_to (fill_id, plan_id, claim_result) VALUES
     ('F0066', 'PL07', 'Paid'),
     ('F0067', 'PL20', 'Rejected'),
     ('F0067', 'PL07', 'Paid');
+
+
+-- Additional November fills by pharmacists (3 rows)
+INSERT INTO fill (fill_id, fill_date, quantity, fill_status, employee_id, prescription_number) VALUES
+    ('F0080', '2026-11-08', 60, 'Sold', 'E004', 'RX700116'),
+    ('F0081', '2026-11-12', 30, 'Sold', 'E002', 'RX700114'),
+    ('F0082', '2026-11-16', 30, 'Sold', 'E004', 'RX700129');
+
+-- Claims for the additional fills (P006 has no insurance on file, so F0082 is unbilled) (2 rows)
+INSERT INTO billed_to (fill_id, plan_id, claim_result) VALUES
+    ('F0080', 'PL12', 'Paid'),
+    ('F0081', 'PL07', 'Paid');
